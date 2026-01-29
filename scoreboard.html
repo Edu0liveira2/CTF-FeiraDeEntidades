@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Placar</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: radial-gradient(circle at top, #0f2027, #000);
+            color: #e5e5e5;
+            font-family: "Segoe UI", monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid #00ffcc55;
+            padding: 50px 70px;
+            border-radius: 18px;
+            box-shadow: 0 0 60px #00ffcc22;
+            width: 1200px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00ffcc;
+            margin-top: 0;
+            margin-bottom: 50px;
+            font-size: 36px;
+            letter-spacing: 2px;
+        }
+
+        .boards {
+            display: flex;
+            gap: 60px;
+            justify-content: space-between;
+        }
+
+        .board {
+            flex: 1;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .easy {
+            color: #00ffcc;
+        }
+
+        .hard {
+            color: #ff5555;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 14px;
+            border-bottom: 1px solid #ffffff22;
+            text-align: left;
+            font-size: 15px;
+        }
+
+        th {
+            opacity: 0.9;
+        }
+
+        /* TOP 3 CORES */
+        .gold {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .silver {
+            color: #c0c0c0;
+            font-weight: bold;
+        }
+
+        .bronze {
+            color: #cd7f32;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🏆 Placar</h1>
+
+    <div class="boards">
+
+        <!-- CTF FÁCIL -->
+        <div class="board">
+            <h2 class="easy">CTF Fácil</h2>
+
+            {% set easy = scoreboard | selectattr("challenge", "equalto", "CTF Fácil") | list %}
+
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Tempo (s)</th>
+                </tr>
+
+                {% for entry in easy %}
+                <tr class="
+                    {% if loop.index == 1 %}gold
+                    {% elif loop.index == 2 %}silver
+                    {% elif loop.index == 3 %}bronze
+                    {% endif %}
+                ">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ entry.name }}</td>
+                    <td>{{ entry.time }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <!-- CTF DIFÍCIL -->
+        <div class="board">
+            <h2 class="hard">CTF Difícil</h2>
+
+            {% set hard = scoreboard | selectattr("challenge", "equalto", "CTF Difícil") | list %}
+
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Tempo (s)</th>
+                </tr>
+
+                {% for entry in hard %}
+                <tr class="
+                    {% if loop.index == 1 %}gold
+                    {% elif loop.index == 2 %}silver
+                    {% elif loop.index == 3 %}bronze
+                    {% endif %}
+                ">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ entry.name }}</td>
+                    <td>{{ entry.time }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
