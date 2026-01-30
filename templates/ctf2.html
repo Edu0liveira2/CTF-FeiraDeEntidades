@@ -77,9 +77,9 @@
     <script>
         function login() {
             const user = document.getElementById("user").value;
-            const pass = document.getElementById("pass").value;
+            const password = document.getElementById("password").value;
 
-            if (user === "admin" && pass === "1234") {
+            if (user === "admin" && password === "1234") {
                 window.location.href = "/flag2";
             } else {
                 document.getElementById("error").style.display = "block";
@@ -88,13 +88,37 @@
     </script>
 </head>
 
+<script>
+setInterval(() => {
+    fetch("/time_status")
+        .then(r => r.json())
+        .then(data => {
+            if (data.time_up) {
+                window.location.href = "/";
+            }
+        })
+        .catch(() => {});
+}, 1000);
+</script>
+
 <body>
 
     <div class="card">
         <h1>Login Seguro 🔒</h1>
 
-        <input id="user" placeholder="Usuário">
-        <input id="pass" type="password" placeholder="Senha">
+        <input id="user" 
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="Usuário">
+        
+        <input id="password" type="password"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="Senha">
 
         <button onclick="login()">Entrar</button>
 
