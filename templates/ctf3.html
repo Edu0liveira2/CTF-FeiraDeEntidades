@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Console</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #0b0f14, #10161d);
+            color: #d0d6dc;
+            font-family: "Segoe UI", monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #0f141a;
+            border: 1px solid #2a2f36;
+            padding: 45px 60px;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
+            max-width: 560px;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .header-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff5555;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: normal;
+            letter-spacing: 1px;
+            color: #e5e9ef;
+        }
+
+        .divider {
+            height: 1px;
+            background: #2a2f36;
+            margin: 25px 0;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 12px 16px;
+            background: #0b0f14;
+            border: 1px solid #2a2f36;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #b0b6bc;
+        }
+
+        .denied {
+            color: #ff5555;
+            font-weight: bold;
+        }
+
+        .admin {
+            color: #00ffcc;
+            font-weight: bold;
+        }
+
+        .flag {
+            margin-top: 20px;
+            padding: 14px;
+            background: #000;
+            border: 1px solid #00ffcc55;
+            border-radius: 6px;
+            color: #ffd700;
+            font-weight: bold;
+            user-select: all;
+            text-align: center;
+        }
+
+        .hint {
+            margin-top: 25px;
+            font-size: 12px;
+            opacity: 0.5;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 11px;
+            opacity: 0.4;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<script>
+setInterval(() => {
+    fetch("/time_status")
+        .then(r => r.json())
+        .then(data => {
+            if (data.time_up) {
+                window.location.href = "/";
+            }
+        })
+        .catch(() => {});
+}, 1000);
+</script>
+
+<body>
+
+<div class="card">
+
+    <div class="header">
+        <div class="header-dot"></div>
+        <h1>Enterprise Admin Console</h1>
+    </div>
+
+    <div class="divider"></div>
+
+    {% if is_admin %}
+        <p class="admin">
+            Access granted.
+        </p>
+
+        <p>
+            Administrative privileges verified.<br>
+            Sensitive system data unlocked.
+        </p>
+
+        <div class="status">
+            INTERNAL SECRET
+        </div>
+
+        <div class="flag">
+            FLAG{cookies_are_not_auth}
+        </div>
+    {% else %}
+        <p class="denied">
+            Access denied.
+        </p>
+
+        <p>
+            Your account does not have sufficient privileges to access
+            this resource.
+        </p>
+
+        <div class="status">
+            Status: <span class="denied">INSUFFICIENT PERMISSIONS</span>
+        </div>
+
+        <div class="hint">
+            Authorization is based on trust.<br>
+            Sometimes, trust is misplaced.
+        </div>
+    {% endif %}
+
+    <div class="footer">
+        © Internal Systems — Confidential
+    </div>
+
+</div>
+
+</body>
+</html>
