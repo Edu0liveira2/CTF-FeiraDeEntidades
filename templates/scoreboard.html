@@ -22,7 +22,7 @@
             padding: 50px 70px;
             border-radius: 18px;
             box-shadow: 0 0 60px #00ffcc22;
-            width: 1200px;
+            width: 1400px;
         }
 
         h1 {
@@ -56,6 +56,10 @@
             color: #00ffcc;
         }
 
+        .medium {
+            color: #ffaa00;
+        }
+
         .hard {
             color: #ff5555;
         }
@@ -76,7 +80,7 @@
             opacity: 0.9;
         }
 
-        /* TOP 3 CORES */
+        /* TOP 3 */
         .gold {
             color: #ffd700;
             font-weight: bold;
@@ -115,6 +119,34 @@
                 </tr>
 
                 {% for entry in easy %}
+                <tr class="
+                    {% if loop.index == 1 %}gold
+                    {% elif loop.index == 2 %}silver
+                    {% elif loop.index == 3 %}bronze
+                    {% endif %}
+                ">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ entry.name }}</td>
+                    <td>{{ entry.time }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <!-- CTF MÉDIO -->
+        <div class="board">
+            <h2 class="medium">CTF Médio</h2>
+
+            {% set medium = scoreboard | selectattr("challenge", "equalto", "CTF Médio") | list %}
+
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Tempo (s)</th>
+                </tr>
+
+                {% for entry in medium %}
                 <tr class="
                     {% if loop.index == 1 %}gold
                     {% elif loop.index == 2 %}silver
