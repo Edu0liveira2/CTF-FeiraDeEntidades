@@ -22,7 +22,7 @@
             padding: 50px 70px;
             border-radius: 14px;
             box-shadow: 0 0 40px #00ffcc22;
-            max-width: 700px;
+            max-width: 750px;
             width: 100%;
             text-align: center;
         }
@@ -38,31 +38,6 @@
             font-size: 15px;
             line-height: 1.6;
             opacity: 0.9;
-        }
-
-        .buttons {
-            margin-top: 35px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        button {
-            background: transparent;
-            color: #00ffcc;
-            border: 2px solid #00ffcc;
-            padding: 16px 36px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.2s ease;
-        }
-
-        button:hover {
-            background: #00ffcc;
-            color: #000;
-            box-shadow: 0 0 20px #00ffcc88;
         }
 
         form {
@@ -81,6 +56,32 @@
             margin-bottom: 15px;
         }
 
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: transparent;
+            color: #00ffcc;
+            border: 2px solid #00ffcc;
+            padding: 16px 32px;
+            font-size: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #00ffcc;
+            color: #000;
+            box-shadow: 0 0 20px #00ffcc88;
+        }
+
         .footer {
             margin-top: 35px;
             font-size: 13px;
@@ -91,53 +92,57 @@
 
 <body>
 
-    <div class="card">
-        <h1>Capture The Flag (CTF)</h1>
+<div class="card">
+    <h1>Capture The Flag (CTF)</h1>
 
-        <p>
-            Um <strong>CTF</strong> é um desafio prático de cibersegurança onde
-            o objetivo é encontrar uma <em>flag</em> — uma sequência de texto que
-            prova que você resolveu o problema.
-        </p>
+    <p>
+        Um <strong>CTF</strong> é um desafio prático de cibersegurança onde
+        o objetivo é encontrar uma <em>flag</em> — uma sequência de texto que
+        prova que você resolveu o problema.
+    </p>
 
-        <p>
-            Os desafios simulam falhas reais encontradas em sistemas, sites e aplicações,
-            incentivando o raciocínio lógico, a curiosidade e a análise técnica.
-            <br><br>
-            <strong>Não é necessário saber programar.</strong>
-            Aqui, o mais importante é pensar como um investigador.
-            <br><br>
-            <strong>Ao encontrar a flag, envie no campo abaixo.</strong>
-        </p>
+    <p>
+        Os desafios simulam falhas reais encontradas em sistemas, sites e aplicações,
+        incentivando o raciocínio lógico, a curiosidade e a análise técnica.
+        <br><br>
+        <strong>Não é necessário saber programar.</strong>
+        Aqui, o mais importante é pensar como um investigador.
+        <br><br>
+        <strong>Ao encontrar a flag, envie no campo abaixo.</strong>
+    </p>
 
-        <form action="/submit" method="post">
-            <input
-                type="text"
-                name="flag"
-                placeholder="Cole a flag aqui (ex: FLAG{...})"
-                required
-                autocomplete="off"
-                autocorrect="off"
-                autocapitalize="off"
-                spellcheck="false"
-            >
-            <button type="submit">Enviar flag</button>
-        </form>
+    <div class="buttons">
+        <a href="/ctf1">
+            <button type="button">CTF Fácil</button>
+        </a>
 
-        <div class="buttons">
-            <a href="/ctf1">
-                <button type="button">CTF Fácil</button>
-            </a>
+        <a href="/ctf2">
+            <button type="button">CTF Médio</button>
+        </a>
 
-            <a href="/ctf2">
-                <button type="button">CTF Difícil</button>
-            </a>
-        </div>
-
-        <div class="footer">
-            InsperSec — Aprendendo segurança na prática
-        </div>
+        <a href="/ctf3">
+            <button type="button">CTF Difícil</button>
+        </a>
     </div>
+
+    <form action="/submit" method="post">
+        <input
+            type="text"
+            name="flag"
+            placeholder="Cole a flag aqui (ex: FLAG{...})"
+            required
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+        >
+        <button type="submit">Enviar flag</button>
+    </form>
+
+    <div class="footer">
+        InsperSec — Aprendendo segurança na prática
+    </div>
+</div>
 
 </body>
 </html>
