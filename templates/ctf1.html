@@ -40,6 +40,19 @@
     </style>
 </head>
 
+<script>
+setInterval(() => {
+    fetch("/time_status")
+        .then(r => r.json())
+        .then(data => {
+            if (data.time_up) {
+                window.location.href = "/";
+            }
+        })
+        .catch(() => {});
+}, 1000);
+</script>
+
 <body>
 
     <div class="card">
@@ -57,9 +70,11 @@
 
     <!--
         👀 Você chegou até aqui.
-
-        FLAG{inspect_element_is_your_friend}
     -->
+    <span style="display:none">
+        FLAG{inspect_element_is_your_friend}
+    </span>
+
 
 </body>
 </html>
